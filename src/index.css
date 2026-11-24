@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #1c1c1e;
+  --color-brand-red-dark: #000000;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Impressão de contratos: o conteúdo vive numa div própria (#print-root),
+   fora do modal, montada via portal — assim a impressão nunca herda
+   flex/centralização/posicionamento do modal (causa de espaços em branco). */
+#print-root {
+  display: none;
+}
+
+@media print {
+  #root {
+    display: none !important;
+  }
+  #print-root {
+    display: block !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+  }
+}
+
+.contrato-doc {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #111;
+}
+.contrato-doc h1 {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2px;
+}
+.contrato-doc h2 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+.contrato-doc p {
+  margin-bottom: 6px;
+}
+.contrato-doc .campo-linha {
+  border-bottom: 1px solid #999;
+  padding: 3px 4px;
+}
+.contrato-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 4px;
+}
+.contrato-doc table td {
+  border: 1px solid #ccc;
+  padding: 5px 8px;
+  vertical-align: top;
+}
+.contrato-doc .assinatura {
+  border-top: 1px solid #333;
+  margin-top: 36px;
+  padding-top: 4px;
+  text-align: center;
+}
+.contrato-doc table,
+.contrato-doc .assinatura {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.contrato-doc h2 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
