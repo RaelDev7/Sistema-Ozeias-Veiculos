@@ -155,7 +155,20 @@ export function Vendas() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="col-span-2">
               <Field label="Veículo">
-                <Select value={editando.veiculoId} onChange={(e) => setEditando({ ...editando, veiculoId: e.target.value })}>
+                <Select
+                  value={editando.veiculoId}
+                  onChange={(e) => {
+                    const veic = veiculos.find((x) => x.id === e.target.value);
+                    // Ao escolher o carro, já puxa o preço de venda do estoque e o tipo (venda/repasse).
+                    // O valor continua editável pra negociação; se já tem parcela paga, não mexe no valor.
+                    setEditando({
+                      ...editando,
+                      veiculoId: e.target.value,
+                      ...(veic && !bloquearFinanceiro && veic.precoVenda > 0 ? { valorVenda: veic.precoVenda } : {}),
+                      ...(veic ? { tipoContrato: veic.tipoOperacao } : {}),
+                    });
+                  }}
+                >
                   <option value="">Selecione...</option>
                   {veiculosDisponiveis.map((v) => (
                     <option key={v.id} value={v.id}>{v.marca} {v.modelo} — {v.placa}</option>
