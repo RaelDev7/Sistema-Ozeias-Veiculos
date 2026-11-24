@@ -3,7 +3,7 @@
 //
 //   npm run seed
 //
-// Cria (ou atualiza a senha de) o usuário do proprietário: ozeias / ozeias2026
+// Cria (ou atualiza a senha de) o usuário do proprietário: ozeiasveiculos / ozeiasveiculos2026
 // — troque a senha depois, editando essa lista e rodando o seed de novo.
 import "dotenv/config";
 import bcrypt from "bcryptjs";
@@ -21,7 +21,7 @@ const sql = neon(connectionString);
 const db = drizzle(sql, { schema });
 
 const usuarios = [
-  { id: "u1", nome: "Ozeias", login: "ozeias", senha: "ozeias2026", cor: "#1c1c1e" },
+  { id: "u1", nome: "Ozeias", login: "ozeiasveiculos", senha: "ozeiasveiculos2026", cor: "#1c1c1e" },
 ];
 
 async function main() {
@@ -57,7 +57,7 @@ async function main() {
     console.log("Template de cobrança padrão criado.");
   }
 
-  console.log("\nPronto! Login inicial: ozeias / ozeias2026.");
+  console.log("\nPronto! Login inicial: ozeiasveiculos / ozeiasveiculos2026.");
   console.log("Troque as senhas assim que possível.");
 }
 
